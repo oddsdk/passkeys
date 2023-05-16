@@ -16,7 +16,7 @@ on:
       - '.github/workflows/passkey-auth.yml'
       - 'pnpm-lock.yaml'
 jobs:
-  test:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

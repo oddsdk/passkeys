@@ -1,14 +1,14 @@
 {
   "$schema": "https://codesandbox.io/schemas/tasks.json",
-  "setupTasks": ["pnpm install", "pnpm build"],
+  "setupTasks": ["yarn install", "yarn build"],
   "tasks": {
     "install-dependencies": {
       "name": "Install Dependencies",
-      "command": "pnpm install"
+      "command": "yarn install"
     },
     "start-app": {
       "name": "Run Dev Server",
-      "command": "pnpm dev",
+      "command": "yarn dev",
       "runAtStart": true
     }
   }
