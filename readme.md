@@ -1,4 +1,4 @@
-# Odd Passkeys monorepo
+# Odd Passkeys Monorepo
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/oddsdk/passkeys/blob/main/license)
 [![Built by FISSION](https://img.shields.io/badge/⌘-Built_by_FISSION-purple.svg)](https://fission.codes)
