@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/oddsdk/passkeys/compare/preact-v0.1.0...preact-v0.1.1) (2023-05-16)
+
+
+### Bug Fixes
+
+* **odd-preact:** remove jsx ([388bee2](https://github.com/oddsdk/passkeys/commit/388bee27b653de6b507765e65557dd2a7fccdafa))
+
 ## [0.1.0](https://github.com/oddsdk/passkeys/compare/preact-v0.0.1...preact-v0.1.0) (2023-05-16)
 
 
