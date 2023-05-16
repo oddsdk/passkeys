@@ -1,6 +1,6 @@
 {
   "name": "@oddjs/preact",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "ODD SDK Preact hooks and context provider.",
   "author": "Hugo Dias <hugomrdias@gmail.com> (hugodias.me)",
   "license": "apache-2.0",
