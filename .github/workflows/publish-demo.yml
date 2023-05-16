@@ -1,4 +1,4 @@
-name: passkey-auth
+name: publish-demo
 env:
   CI: true
   FORCE_COLOR: 1
@@ -7,16 +7,16 @@ on:
     branches:
       - main
     paths:
-      - 'examples/passkey-auth/**'
-      - '.github/workflows/passkey-auth.yml'
+      - 'examples/demo/**'
+      - '.github/workflows/publish-demo.yml'
       - 'pnpm-lock.yaml'
   pull_request:
     paths:
-      - 'packages/passkey-auth/**'
-      - '.github/workflows/passkey-auth.yml'
+      - 'packages/demo/**'
+      - '.github/workflows/publish-demo.yml'
       - 'pnpm-lock.yaml'
 jobs:
-  deploy:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -28,8 +28,8 @@ jobs:
           node-version: 18
           cache: 'pnpm'
       - run: pnpm install
-      - run: pnpm -r --filter passkey-auth run build
+      - run: pnpm -r --filter odd-passkeys-demo run build
       - uses: fission-suite/publish-action@v1.2.7
         with:
           machine_key: ${{ secrets.FISSION_MACHINE_KEY }}
-          workdir: 'examples/passkey-auth'
+          workdir: 'examples/demo'

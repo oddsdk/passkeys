@@ -1,0 +1,30 @@
+{
+  "name": "odd-passkeys-preact",
+  "private": true,
+  "version": "0.0.0",
+  "license": "apache-2.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --force",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@acab/reset.css": "^0.5.3",
+    "@oddjs/odd": "^0.37.1",
+    "@oddjs/passkeys": "^0.1.0",
+    "@oddjs/preact": "^0.1.1",
+    "iso-passkeys": "^0.1.5",
+    "p-debounce": "^4.0.0",
+    "preact": "^10.14.1",
+    "preact-router": "^4.1.0",
+    "react-hook-form": "^7.43.9",
+    "water.css": "^2.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@preact/preset-vite": "^2.5.0",
+    "typescript": "^5.0.4",
+    "vite": "^4.3.7"
+  }
+}

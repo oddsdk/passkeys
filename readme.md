@@ -14,17 +14,17 @@ Headless, type-safe & powerful utilities to build apps with [ODD SDK](https://od
 
 ## Examples
 
-- [`examples/passkey-auth`](examples/passkey-auth/) - Passkey authentication example
+- [`examples/odd-passkeys-preact`](examples/odd-passkeys-preact/) - Passkey authentication example
 
 ### Checkout examples
 
-Using Codesandbox: <https://githubbox.com/oddsdk/passkeys/tree/main/examples/passkey-auth>
+Using Codesandbox: <https://githubbox.com/oddsdk/passkeys/tree/main/examples/odd-passkeys-preact>
 
 Locally:
 
 ```bash
-npx tiged oddsdk/passkeys/examples/passkey-auth odd-passkey-auth
-cd odd-passkey-auth
+npx tiged oddsdk/passkeys/examples/odd-passkeys-preact odd-passkeys-preact
+cd odd-passkeys-preact
 pnpm install
 pnpm dev
 ```
