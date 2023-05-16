@@ -41,7 +41,7 @@ importers:
         specifier: ^0.1.0
         version: link:../../packages/odd-passkeys
       '@oddjs/preact':
-        specifier: ^0.1.0
+        specifier: ^0.1.1
         version: link:../../packages/odd-preact
       '@preact/signals':
         specifier: ^1.1.3
