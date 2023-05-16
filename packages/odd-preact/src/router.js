@@ -1,6 +1,6 @@
 import { useEffect } from 'preact/hooks'
 import { route } from 'preact-router'
-import { useOddContext } from './index.jsx'
+import { useOddContext } from './index.js'
 
 export function useOdd({ redirectTo = '', redirectIfFound = false } = {}) {
   const context = useOddContext()

@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/no-null */
 /* eslint-disable unicorn/no-useless-undefined */
-import { createContext } from 'preact'
+import { createContext, createElement } from 'preact'
 import {
   useCallback,
   useContext,
@@ -156,7 +156,7 @@ export function OddContextProvider({
     }
   }, [program, error, session, isUsernameAvailable, login])
 
-  return <OddContext.Provider value={value}>{children}</OddContext.Provider>
+  return createElement(OddContext.Provider, { value, children })
 }
 
 export function useOddContext() {
