@@ -1,0 +1,42 @@
+{
+  "name": "odd-passkeys",
+  "version": "0.0.0",
+  "private": true,
+  "license": "apache-2.0",
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "scripts": {
+    "format": "prettier --write '**/*.{js,ts,yml,json}' --ignore-path .gitignore",
+    "format:check": "prettier --check '**/*.{js,ts,yml,json}' --ignore-path .gitignore",
+    "clean": "rm -rf docs node_modules pnpm-lock.yaml packages/*/{pnpm-lock.yaml,coverage,.nyc_output,dist,node_modules,.next} examples/*/{pnpm-lock.yaml,coverage,.nyc_output,dist,node_modules,.next}",
+    "lint": "pnpm -r --if-present run lint",
+    "test": "pnpm -r --if-present run test",
+    "check": "pnpm -r --if-present run check",
+    "build": "pnpm -r --if-present run build",
+    "docs": "typedoc --out docs --plugin typedoc-plugin-missing-exports"
+  },
+  "devDependencies": {
+    "depcheck": "^1.4.3",
+    "hd-scripts": "^6.0.0",
+    "lint-staged": "^13.2.2",
+    "prettier": "2.8.8",
+    "simple-git-hooks": "^2.8.1",
+    "typedoc": "^0.24.7",
+    "typedoc-plugin-missing-exports": "^2.0.0",
+    "typescript": "5.0.4"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,ts,yml,json}": "prettier --write",
+    "*.js": "eslint --fix"
+  },
+  "prettier": "hd-scripts/prettier.config.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "pnpm@8.5.1"
+}

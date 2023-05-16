@@ -1,0 +1,7 @@
+{
+  "separate-pull-requests": true,
+  "packages": {
+    "packages/odd-passkeys": {},
+    "packages/odd-preact": {}
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "types": ["vite/client"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "out"],
+  "references": [
+    { "path": "../../packages/odd-passkeys" },
+    { "path": "../../packages/odd-preact" }
+  ]
+}

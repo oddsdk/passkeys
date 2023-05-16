@@ -1,0 +1,99 @@
+{
+  "name": "@oddjs/preact",
+  "version": "0.1.5",
+  "description": "ODD SDK Preact hooks and context provider.",
+  "author": "Hugo Dias <hugomrdias@gmail.com> (hugodias.me)",
+  "license": "apache-2.0",
+  "repository": {
+    "url": "oddsdk/passkeys",
+    "directory": "packages/odd-preact"
+  },
+  "homepage": "https://github.com/oddsdk/passkeys/tree/main/packages/odd-preact",
+  "keywords": [
+    "preact",
+    "odd",
+    "odd-sdk",
+    "hooks"
+  ],
+  "type": "module",
+  "main": "src/index.js",
+  "types": "dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./src/index.jsx"
+    },
+    "./router": {
+      "types": "./dist/src/router.d.ts",
+      "import": "./src/router.js"
+    },
+    "./types": {
+      "types": "./dist/src/types.d.ts",
+      "import": "./src/types.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      ".": [
+        "dist/src/index"
+      ],
+      "router": [
+        "dist/src/router"
+      ],
+      "types": [
+        "dist/src/types"
+      ]
+    }
+  },
+  "files": [
+    "src",
+    "dist/src/*.d.ts",
+    "dist/src/*.d.ts.map"
+  ],
+  "scripts": {
+    "lint": "tsc --build && eslint '**/*.{js,ts,jsx}' && prettier --check '**/*.{jsx,js,ts,yml,json}' --ignore-path ../../.gitignore",
+    "test": "tsc --build && pnpm run test:node && pnpm run test:browser",
+    "test:node": "mocha 'test/**/!(*.browser).test.js'",
+    "test:browser": "playwright-test 'test/**/!(*.node).test.js'"
+  },
+  "dependencies": {
+    "@oddjs/odd": "^0.37.1",
+    "@oddjs/passkeys": "workspace:^",
+    "preact": "^10.13.2",
+    "preact-router": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/assert": "^1.5.6",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.15.10",
+    "assert": "^2.0.0",
+    "hd-scripts": "^6.0.0",
+    "mocha": "^10.2.0",
+    "playwright-test": "^9.0.0",
+    "typescript": "5.0.4"
+  },
+  "eslintConfig": {
+    "extends": [
+      "../../node_modules/hd-scripts/eslint/preact.js"
+    ],
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "env": {
+      "mocha": true
+    },
+    "ignorePatterns": [
+      "dist"
+    ]
+  },
+  "depcheck": {
+    "specials": [
+      "bin"
+    ],
+    "ignores": [
+      "@types/*",
+      "hd-scripts",
+      "assert"
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "lib": ["ESNext", "DOM"],
+    "emitDeclarationOnly": true
+  },
+  "references": [
+    {
+      "path": "../odd-passkeys"
+    }
+  ],
+  "include": ["src", "scripts", "test", "package.json"],
+  "exclude": ["node_modules", "dist", "out"],
+  "typedocOptions": {
+    "entryPoints": ["src/index.jsx", "src/router.js"],
+    "includeVersion": true,
+    "excludeExternals": true,
+    "internalModule": "<internal>"
+  }
+}
