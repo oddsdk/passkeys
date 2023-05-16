@@ -34,30 +34,15 @@ importers:
       '@acab/reset.css':
         specifier: ^0.5.3
         version: 0.5.3
-      '@noble/ed25519':
-        specifier: ^2.0.0
-        version: 2.0.0
-      '@oddjs/odd':
-        specifier: ^0.37.1
-        version: 0.37.1
       '@oddjs/passkeys':
         specifier: workspace:^
         version: link:../../packages/odd-passkeys
       '@oddjs/preact':
         specifier: workspace:^
         version: link:../../packages/odd-preact
-      '@peculiar/asn1-ecc':
-        specifier: ^2.3.6
-        version: 2.3.6
-      '@peculiar/asn1-schema':
-        specifier: ^2.3.6
-        version: 2.3.6
       '@preact/signals':
         specifier: ^1.1.3
         version: 1.1.3(preact@10.13.2)
-      cbor-x:
-        specifier: ^1.5.2
-        version: 1.5.2
       idb-keyval:
         specifier: ^6.2.1
         version: 6.2.1
