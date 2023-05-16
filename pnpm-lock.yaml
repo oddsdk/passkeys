@@ -34,6 +34,9 @@ importers:
       '@acab/reset.css':
         specifier: ^0.5.3
         version: 0.5.3
+      '@oddjs/odd':
+        specifier: ^0.37.1
+        version: 0.37.1
       '@oddjs/passkeys':
         specifier: workspace:^
         version: link:../../packages/odd-passkeys

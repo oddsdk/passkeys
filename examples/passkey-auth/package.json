@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@acab/reset.css": "^0.5.3",
+    "@oddjs/odd": "^0.37.1",
     "@oddjs/passkeys": "workspace:^",
     "@oddjs/preact": "workspace:^",
     "@preact/signals": "^1.1.3",
