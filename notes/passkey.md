@@ -74,8 +74,8 @@ For encryption we have the following options:
 
 #### 5.1.1. Chromium
 
-Intent to Ship: https://groups.google.com/a/chromium.org/g/blink-dev/c/iTNOgLwD2bI/m/1zKXsF7uAgAJ
-Tracking bug: https://bugs.chromium.org/p/chromium/issues/detail?id=1106961
+- Intent to Ship: https://groups.google.com/a/chromium.org/g/blink-dev/c/iTNOgLwD2bI/m/1zKXsF7uAgAJ
+- Tracking bug: https://bugs.chromium.org/p/chromium/issues/detail?id=1106961
 
 ### 5.2. LargeBlob Support
 
