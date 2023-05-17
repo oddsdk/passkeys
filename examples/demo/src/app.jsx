@@ -6,6 +6,7 @@ import { OddContextProvider } from '@oddjs/preact'
 import Register from './register.jsx'
 import Test from './test.jsx'
 import * as OddPasskey from '@oddjs/passkeys'
+import ReloadPrompt from './prompt.jsx'
 
 /** @type {import('@oddjs/odd').Configuration} */
 const config = {
@@ -34,6 +35,7 @@ export function App() {
             <Register path="/register" />
           </Router>
         </main>
+        <ReloadPrompt />
       </OddContextProvider>
     </>
   )

@@ -5,7 +5,7 @@ import { isFile } from '@oddjs/odd/fs/types/check'
 import { useEffect, useState } from 'preact/hooks'
 import { useOdd } from '@oddjs/preact/router'
 
-const branch = odd.path.RootBranch.Private
+const branch = odd.path.RootBranch.Public
 
 /**
  * @param {import('preact').Attributes} props
@@ -16,13 +16,47 @@ export default function Home(props) {
   })
   const [status, setStatus] = useState('')
   const [files, setFiles] = useState(
-    /** @type {Array<{src: string, path: string, cid?: string, file: string[] } | null>} */ ([])
+    /** @type {Array<{src: string, path: string, cid?: string, file: string[], blob: Blob } | null>} */ ([])
   )
 
   useEffect(() => {
     getFiles(session)
   }, [session])
 
+  useEffect(() => {
+    /**
+     * @param {MessageEvent} event
+     */
+    async function onmessage(event) {
+      if (event.data.action !== 'load-image') {
+        return
+      }
+
+      if (event.data.file && session && session.fs) {
+        const { fs } = session
+        // @ts-ignore
+        const file = /** @type {File} */ (event.data.file)
+
+        await fs.write(
+          odd.path.file(branch, 'test', file.name),
+          new Uint8Array(await new Blob([file]).arrayBuffer())
+        )
+
+        setStatus('Publishing changes...')
+        // Announce the changes to the server
+        await fs.publish()
+
+        await getFiles(session)
+        setStatus('')
+        navigator.serviceWorker.removeEventListener('message', onmessage)
+      }
+    }
+
+    if (navigator.serviceWorker.controller && session) {
+      navigator.serviceWorker.addEventListener('message', onmessage)
+      navigator.serviceWorker.controller.postMessage('share-ready')
+    }
+  }, [session])
   /**
    *
    * @param {import('@oddjs/odd').Session | null} session
@@ -35,14 +69,24 @@ export default function Home(props) {
         const links = await fs.ls(path)
         const files = await Promise.all(
           Object.entries(links).map(async ([name]) => {
+            // @ts-ignore
             const isPrivate = branch === 'private'
             const filepath = odd.path.combine(path, odd.path.file(name))
             const file = await fs.get(filepath)
 
             if (!isFile(file)) return null
 
+            let mime
+            const p = filepath.file.join('/')
+            if (p.endsWith('.jpg') || p.endsWith('.jpeg')) {
+              mime = 'image/jpeg'
+            }
+            if (p.endsWith('.png')) {
+              mime = 'image/png'
+            }
+
             // Create a blob to use as the image `src`
-            const blob = new Blob([file.content])
+            const blob = new Blob([file.content], { type: mime })
             const src = URL.createObjectURL(blob)
 
             const cid = isPrivate
@@ -58,6 +102,7 @@ export default function Home(props) {
               src,
               cid,
               file: filepath.file,
+              blob,
             }
           })
         )
@@ -130,6 +175,32 @@ export default function Home(props) {
                     }}
                   >
                     Delete
+                  </button>
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      const files = [
+                        new File([file.blob], file.path, {
+                          type: file.blob.type,
+                        }),
+                      ]
+                      if (
+                        session &&
+                        session.fs &&
+                        navigator.canShare &&
+                        navigator.canShare({
+                          files,
+                        })
+                      ) {
+                        await navigator.share({
+                          files,
+                          title: 'OddFS',
+                          text: 'OddFS',
+                        })
+                      }
+                    }}
+                  >
+                    Share
                   </button>
                 </div>
               )

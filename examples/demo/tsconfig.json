@@ -3,10 +3,16 @@
   "compilerOptions": {
     "outDir": "dist",
     "jsx": "react-jsx",
+    "lib": ["ES2022", "DOM", "DOM.Iterable", "WebWorker"],
     "jsxImportSource": "preact",
-    "types": ["vite/client"]
+    "types": [
+      "vite/client",
+      "vite-plugin-pwa",
+      "vite-plugin-pwa/client",
+      "vite-plugin-svgr/client"
+    ]
   },
-  "include": ["src"],
+  "include": ["src", "public"],
   "exclude": ["node_modules", "dist", "out"],
   "references": [
     { "path": "../../packages/odd-passkeys" },

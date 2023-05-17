@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'preact/hooks'
 import { useOdd } from '@oddjs/preact/router'
 import pDebounce from 'p-debounce'
+import { ReactComponent as Logo } from './assets/brand.svg'
 
 /**
  * @param {import('preact').Attributes} props
@@ -83,6 +84,7 @@ export default function Login(props) {
   return (
     <>
       <div className="login">
+        <Logo style="margin: 0 auto; height: 50px;" />
         <form autoComplete="on" onSubmit={onSubmit}>
           <label>
             <input
@@ -116,7 +118,7 @@ export default function Login(props) {
           max-width: 21rem;
           margin: 0 auto;
           padding: 1rem;
-          border: 1px solid #f0f0f0;
+          border: 1px solid var(--border);
           border-radius: 4px;
         }
         form,
