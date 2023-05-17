@@ -14,11 +14,11 @@ const pwaOptions = {
     globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
   },
   filename: 'sw.ts',
-  devOptions: {
-    enabled: true,
-    type: 'module',
-    navigateFallback: 'index.html',
-  },
+  // devOptions: {
+  //   enabled: true,
+  //   type: 'module',
+  //   navigateFallback: 'index.html',
+  // },
 
   manifest: {
     name: 'Odd Passkeys Demo',

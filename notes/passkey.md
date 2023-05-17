@@ -81,16 +81,15 @@ Tracking bug: https://bugs.chromium.org/p/chromium/issues/detail?id=1106961
 
 #### 5.2.1. Chromium
 
-https://chromestatus.com/feature/5657899357437952
-
-Tracking bug: https://bugs.chromium.org/p/chromium/issues/detail?id=1114875
-Intent to Ship: https://groups.google.com/a/chromium.org/g/blink-dev/c/guUJ9FuOIfc/m/30durTKDBgAJ
+- https://chromestatus.com/feature/5657899357437952
+- Tracking bug: https://bugs.chromium.org/p/chromium/issues/detail?id=1114875
+- Intent to Ship: https://groups.google.com/a/chromium.org/g/blink-dev/c/guUJ9FuOIfc/m/30durTKDBgAJ
 
 #### 5.2.2. Safari
 
-https://bugs.webkit.org/show_bug.cgi?id=252789
-https://github.com/WebKit/WebKit/pull/9891
-https://webkit.org/blog/13964/release-notes-for-safari-technology-preview-166/
+- https://bugs.webkit.org/show_bug.cgi?id=252789
+- https://github.com/WebKit/WebKit/pull/9891
+- https://webkit.org/blog/13964/release-notes-for-safari-technology-preview-166/
 
 ## 6. Notes
 
