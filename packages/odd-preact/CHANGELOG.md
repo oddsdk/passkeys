@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/oddsdk/passkeys/compare/preact-v0.2.0...preact-v0.2.1) (2023-05-18)
+
+
+### Bug Fixes
+
+* add more documentation ([9e2204e](https://github.com/oddsdk/passkeys/commit/9e2204ea41dffe551b5d3eb069c585657139c3d8))
+
 ## [0.2.0](https://github.com/oddsdk/passkeys/compare/preact-v0.1.1...preact-v0.2.0) (2023-05-18)
 
 
