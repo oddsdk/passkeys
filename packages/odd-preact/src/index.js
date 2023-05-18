@@ -175,6 +175,19 @@ export function OddContextProvider({
   return createElement(OddContext.Provider, { value, children })
 }
 
+/**
+ * Hook to access the ODD program and session from the `OddContextProvider`.
+ * 
+ * @example
+ * ```jsx
+ * // home.jsx
+ * import { useOddContext } from '@oddjs/preact'
+ *
+export default function Home(props) {
+  const { session, isLoading, login, logout, register } = useOddContext()
+}
+ * ```
+ */
 export function useOddContext() {
   const context = useContext(OddContext)
   if (context === undefined) {

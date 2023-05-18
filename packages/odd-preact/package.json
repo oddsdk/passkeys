@@ -1,6 +1,6 @@
 {
   "name": "@oddjs/preact",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "ODD SDK Preact hooks and context provider.",
   "author": "Hugo Dias <hugomrdias@gmail.com> (hugodias.me)",
   "license": "apache-2.0",
@@ -58,7 +58,6 @@
   },
   "dependencies": {
     "@oddjs/odd": "^0.37.1",
-    "@oddjs/passkeys": "workspace:^",
     "preact": "^10.14.1",
     "preact-router": "^4.1.0"
   },

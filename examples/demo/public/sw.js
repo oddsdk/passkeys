@@ -5,22 +5,30 @@ import {
 } from 'workbox-precaching'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
 
-declare let self: globalThis.ServiceWorkerGlobalScope
+const global = /** @type {ServiceWorkerGlobalScope} */ (
+  /** @type {unknown} */ (globalThis)
+)
 
-self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') self.skipWaiting()
+global.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') global.skipWaiting()
 })
 
 // self.__WB_MANIFEST is default injection point
+// @ts-ignore
 precacheAndRoute(self.__WB_MANIFEST)
 
 // clean old assets
 cleanupOutdatedCaches()
 
-const nextMessageResolveMap = new Map<string, Array<() => void>>()
+/** @type {Map<string, Array<(value: any) => void>>} */
+const nextMessageResolveMap = new Map()
 
-// eslint-disable-next-line @typescript-eslint/promise-function-async
-function nextMessage(dataVal: string): Promise<void> {
+/**
+ *
+ * @param {string} dataVal
+ * @returns Promise<void>
+ */
+function nextMessage(dataVal) {
   return new Promise((resolve) => {
     if (!nextMessageResolveMap.has(dataVal)) {
       nextMessageResolveMap.set(dataVal, [])
@@ -29,27 +37,30 @@ function nextMessage(dataVal: string): Promise<void> {
   })
 }
 
-self.addEventListener('message', (event) => {
+global.addEventListener('message', (event) => {
   const resolvers = nextMessageResolveMap.get(event.data)
   if (resolvers === undefined) {
     return
   }
   nextMessageResolveMap.delete(event.data)
-  for (const resolve of resolvers) resolve()
+  for (const resolve of resolvers) {
+    resolve(event.data)
+  }
 })
 
-async function shareTargetHandler({
-  event,
-}: {
-  event: FetchEvent
-}): Promise<Response> {
+/**
+ *
+ * @param {{request: Request, url: URL, event: FetchEvent }} param0
+ * @returns Promise<Response>
+ */
+async function handler({ event }) {
   const dataPromise = event.request.formData()
 
   event.waitUntil(
     (async function () {
       // The page sends this message to tell the service worker it's ready to receive the file.
       await nextMessage('share-ready')
-      const client = await self.clients.get(event.resultingClientId)
+      const client = await global.clients.get(event.resultingClientId)
       const data = await dataPromise
       const file = data.get('file')
       if (client !== undefined) {
@@ -60,17 +71,22 @@ async function shareTargetHandler({
   return Response.redirect('/?share-target')
 }
 
-const matchCb = ({ url, request, event }: any): boolean => {
+/**
+ *
+ * @param {{request: Request, url: URL }} param0
+ */
+function match({ url, request }) {
   if (
     url.pathname === '/' &&
     Boolean(url.searchParams.has('share-target')) &&
-    event.request.method === 'POST'
+    request.method === 'POST'
   ) {
     return true
   }
   return false
 }
-registerRoute(matchCb, shareTargetHandler, 'POST')
+// @ts-ignore
+registerRoute(match, handler, 'POST')
 
 // to allow work offline
 registerRoute(new NavigationRoute(createHandlerBoundToURL('index.html')))

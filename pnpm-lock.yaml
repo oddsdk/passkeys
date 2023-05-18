@@ -193,9 +193,6 @@ importers:
       '@oddjs/odd':
         specifier: ^0.37.1
         version: 0.37.1
-      '@oddjs/passkeys':
-        specifier: workspace:^
-        version: link:../odd-passkeys
       preact:
         specifier: ^10.14.1
         version: 10.14.1

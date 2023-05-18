@@ -15,7 +15,7 @@
   "include": ["src", "scripts", "test", "package.json"],
   "exclude": ["node_modules", "dist", "out"],
   "typedocOptions": {
-    "entryPoints": ["src/index.jsx", "src/router.js"],
+    "entryPoints": ["src/index.js", "src/router.js"],
     "includeVersion": true,
     "excludeExternals": true,
     "internalModule": "<internal>"

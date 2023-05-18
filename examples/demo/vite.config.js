@@ -13,7 +13,7 @@ const pwaOptions = {
   workbox: {
     globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
   },
-  filename: 'sw.ts',
+  filename: 'sw.js',
   // devOptions: {
   //   enabled: true,
   //   type: 'module',
@@ -28,17 +28,17 @@ const pwaOptions = {
     orientation: 'any',
     screenshots: [
       {
-        src: 'screen2.png',
+        src: 'screen1.png',
         type: 'image/png',
-        sizes: '1170x2532',
+        sizes: '1081x2340',
         // @ts-ignore
         form_factor: 'narrow',
         label: 'Login screen',
       },
       {
-        src: 'screen1.png',
+        src: 'screen2.png',
         type: 'image/png',
-        sizes: '1170x2532',
+        sizes: '1081x2340',
         // @ts-ignore
         form_factor: 'narrow',
         label: 'Home screen',
