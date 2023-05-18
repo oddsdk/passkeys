@@ -59,7 +59,7 @@
   "dependencies": {
     "@oddjs/odd": "^0.37.1",
     "preact": "^10.14.1",
-    "preact-router": "^4.1.0"
+    "preact-router": "^4.1.1"
   },
   "devDependencies": {
     "@types/assert": "^1.5.6",
