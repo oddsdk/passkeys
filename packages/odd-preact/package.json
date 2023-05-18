@@ -58,7 +58,6 @@
   },
   "dependencies": {
     "@oddjs/odd": "^0.37.1",
-    "@oddjs/passkeys": "workspace:^",
     "preact": "^10.14.1",
     "preact-router": "^4.1.0"
   },
