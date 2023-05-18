@@ -4,8 +4,10 @@ import type {
   Configuration,
   Components,
   ProgramError,
-  Maybe,
 } from '@oddjs/odd'
+
+export type LoginFn = (username?: string) => Promise<Session | undefined>
+export type LogoutFn = () => Promise<void>
 
 export type OddContext =
   | {
@@ -14,7 +16,9 @@ export type OddContext =
       session: null
       program: undefined
       isUsernameAvailable: (username: string) => Promise<boolean>
-      login: (username?: string) => Promise<Maybe<Session>>
+      login: LoginFn
+      register: LoginFn
+      logout: LogoutFn
     }
   | {
       isLoading: false
@@ -22,7 +26,9 @@ export type OddContext =
       session: null
       program: undefined
       isUsernameAvailable: (username: string) => Promise<boolean>
-      login: (username?: string) => Promise<Maybe<Session>>
+      login: LoginFn
+      register: LoginFn
+      logout: LogoutFn
     }
   | {
       isLoading: false
@@ -30,7 +36,9 @@ export type OddContext =
       session: Session | null
       program: Program
       isUsernameAvailable: (username: string) => Promise<boolean>
-      login: (username?: string) => Promise<Maybe<Session>>
+      login: LoginFn
+      register: LoginFn
+      logout: LogoutFn
     }
   | {
       isLoading: false
@@ -38,7 +46,9 @@ export type OddContext =
       session: Session | null
       program: Program
       isUsernameAvailable: (username: string) => Promise<boolean>
-      login: (username?: string) => Promise<Maybe<Session>>
+      login: LoginFn
+      register: LoginFn
+      logout: LogoutFn
     }
 
 export interface OddContextProviderProps {

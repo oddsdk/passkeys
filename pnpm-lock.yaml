@@ -153,6 +153,9 @@ importers:
       '@oddjs/odd':
         specifier: ^0.37.1
         version: 0.37.1
+      idb-keyval:
+        specifier: ^6.2.1
+        version: 6.2.1
       iso-base:
         specifier: ^0.1.5
         version: 0.1.5

@@ -9,7 +9,6 @@ import {
   useState,
 } from 'preact/hooks'
 import * as odd from '@oddjs/odd'
-import { Auth } from '@oddjs/passkeys'
 
 /** @type {import('preact').Context<import('./types.js').OddContext>} */
 // @ts-ignore - TODO fix this
@@ -20,6 +19,8 @@ const OddContext = createContext({
   program: undefined,
   isUsernameAvailable: undefined,
   login: undefined,
+  logout: undefined,
+  register: undefined,
 })
 /**
  *
@@ -76,18 +77,6 @@ export function OddContextProvider({
     }
   }, [components, componentsFactory, config])
 
-  useEffect(() => {
-    if (program) {
-      // TODO unregister listeners
-      program.on('session:destroy', () => {
-        setSession(null)
-      })
-      program.on('session:create', ({ session }) => {
-        setSession(session)
-      })
-    }
-  }, [program])
-
   const isUsernameAvailable = useCallback(
     async (/** @type {string} */ username) => {
       if (!program) {
@@ -107,9 +96,28 @@ export function OddContextProvider({
       if (!program) {
         throw new Error('Needs program.')
       }
-      return await Auth.login(program, username)
+      // @ts-ignore
+      await program.auth.register({ username })
+      const session = await program.auth.session()
+      if (session) {
+        setSession(session)
+        return session
+      }
     },
     [program]
+  )
+
+  const logout = useCallback(
+    async (/** @type {string | undefined} */ username) => {
+      if (!program) {
+        throw new Error('Needs program.')
+      }
+      if (session) {
+        await session.destroy()
+        setSession(null)
+      }
+    },
+    [program, session]
   )
 
   /** @type {import('./types.js').OddContext} */
@@ -121,7 +129,9 @@ export function OddContextProvider({
         session: null,
         program: undefined,
         isUsernameAvailable,
+        register: login,
         login,
+        logout,
       }
     }
 
@@ -132,7 +142,9 @@ export function OddContextProvider({
         session: null,
         program: undefined,
         isUsernameAvailable,
+        register: login,
         login,
+        logout,
       }
     }
     if (program) {
@@ -142,7 +154,9 @@ export function OddContextProvider({
         session,
         program,
         isUsernameAvailable,
+        register: login,
         login,
+        logout,
       }
     }
 
@@ -152,9 +166,11 @@ export function OddContextProvider({
       session,
       program,
       isUsernameAvailable,
+      register: login,
       login,
+      logout,
     }
-  }, [program, error, session, isUsernameAvailable, login])
+  }, [program, error, session, isUsernameAvailable, login, logout])
 
   return createElement(OddContext.Provider, { value, children })
 }
