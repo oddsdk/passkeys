@@ -1,20 +1,24 @@
+/* eslint-disable unicorn/no-useless-undefined */
+/* eslint-disable unicorn/no-null */
 import * as odd from '@oddjs/odd'
 import { isFile } from '@oddjs/odd/fs/types/check'
 import { useEffect, useState } from 'preact/hooks'
 import { useOdd } from '@oddjs/preact/router'
+import { ReactComponent as DeleteIcon } from './assets/delete.svg'
+import { ReactComponent as OpenIcon } from './assets/open.svg'
 
-const branch = odd.path.RootBranch.Private
+const branch = odd.path.RootBranch.Public
 
 /**
  * @param {import('preact').Attributes} props
  */
 export default function Home(props) {
-  const { session, isLoading } = useOdd({
+  const { session, isLoading, logout } = useOdd({
     redirectTo: '/login',
   })
   const [status, setStatus] = useState('')
   const [files, setFiles] = useState(
-    /** @type {Array<{src: string, path: string, cid?: string, file: string[] } | null>} */ ([])
+    /** @type {Array<{src: string, path: string, cid?: string, file: string[], blob: Blob } | null>} */ ([])
   )
 
   useEffect(() => {
@@ -33,14 +37,24 @@ export default function Home(props) {
         const links = await fs.ls(path)
         const files = await Promise.all(
           Object.entries(links).map(async ([name]) => {
+            // @ts-ignore
             const isPrivate = branch === 'private'
             const filepath = odd.path.combine(path, odd.path.file(name))
             const file = await fs.get(filepath)
 
             if (!isFile(file)) return null
 
+            let mime
+            const p = filepath.file.join('/')
+            if (p.endsWith('.jpg') || p.endsWith('.jpeg')) {
+              mime = 'image/jpeg'
+            }
+            if (p.endsWith('.png')) {
+              mime = 'image/png'
+            }
+
             // Create a blob to use as the image `src`
-            const blob = new Blob([file.content])
+            const blob = new Blob([file.content], { type: mime })
             const src = URL.createObjectURL(blob)
 
             const cid = isPrivate
@@ -56,6 +70,7 @@ export default function Home(props) {
               src,
               cid,
               file: filepath.file,
+              blob,
             }
           })
         )
@@ -104,16 +119,8 @@ export default function Home(props) {
               return (
                 <div key={file.path} class="Box">
                   <p class="Box-text">{file.path}</p>
-                  <a
-                    class="Box-text"
-                    target="_blank"
-                    href={`https://${file.cid}.ipfs.dweb.link`}
-                    rel="noreferrer"
-                    title={file.cid}
-                  >
-                    cid
-                  </a>
                   <img src={file.src} width="100" />
+                  <br />
                   <button
                     type="button"
                     onClick={async () => {
@@ -127,8 +134,17 @@ export default function Home(props) {
                       }
                     }}
                   >
-                    Delete
+                    <DeleteIcon style="fill: currentColor; width: 16px" />
                   </button>
+                  <a
+                    class="button"
+                    target="_blank"
+                    href={`https://${file.cid}.ipfs.dweb.link/userland`}
+                    rel="noreferrer"
+                    title={file.cid}
+                  >
+                    <OpenIcon style="fill: currentColor; width: 16px" />
+                  </a>
                 </div>
               )
             })
@@ -139,9 +155,7 @@ export default function Home(props) {
       <button
         type="button"
         onClick={async () => {
-          if (session) {
-            await session.destroy()
-          }
+          await logout()
         }}
       >
         Logout

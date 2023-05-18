@@ -22,7 +22,7 @@
     "iso-passkeys": "^0.1.5",
     "p-debounce": "^4.0.0",
     "preact": "^10.14.1",
-    "preact-router": "^4.1.0",
+    "preact-router": "^4.1.1",
     "react-hook-form": "^7.43.9",
     "vite-plugin-pwa": "^0.14.7",
     "water.css": "^2.1.1"
@@ -31,7 +31,7 @@
     "@babel/core": "^7.21.8",
     "@preact/preset-vite": "^2.5.0",
     "typescript": "^5.0.4",
-    "vite": "^4.3.7",
+    "vite": "^4.3.8",
     "vite-plugin-svgr": "^3.2.0",
     "workbox-precaching": "^6.5.4",
     "workbox-routing": "^6.5.4",

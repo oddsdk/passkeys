@@ -3,7 +3,6 @@ import { OddContextProvider } from '@oddjs/preact'
 import { Router } from 'preact-router'
 import Home from './home.jsx'
 import Login from './login.jsx'
-import Register from './register.jsx'
 
 /** @type {import('@oddjs/odd').Configuration} */
 const config = {
@@ -28,7 +27,6 @@ export function App() {
           <Router>
             <Home path="/" />
             <Login path="/login" />
-            <Register path="/register" />
           </Router>
         </main>
       </OddContextProvider>

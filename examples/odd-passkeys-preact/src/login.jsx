@@ -1,18 +1,23 @@
-import { useEffect, useState } from 'preact/hooks'
+/* eslint-disable no-console */
+/* eslint-disable unicorn/no-useless-undefined */
+import { useState } from 'preact/hooks'
 import { useOdd } from '@oddjs/preact/router'
 import pDebounce from 'p-debounce'
+import { ReactComponent as Logo } from './assets/brand.svg'
 
 /**
+ * Login page
+ *
  * @param {import('preact').Attributes} props
  */
 export default function Login(props) {
-  const { program, isLoading, isUsernameAvailable, login } = useOdd({
+  const { isLoading, isUsernameAvailable, login } = useOdd({
     redirectTo: '/',
     redirectIfFound: true,
   })
 
   const [errorMsg, setErrorMsg] = useState('')
-  const [mode, setMode] = useState(false)
+  const [shouldRegister, setShouldRegister] = useState(false)
   const [isLoggingIn, setIsLoggingIn] = useState(false)
 
   /** @type {import('preact/src/jsx.js').JSXInternal.GenericEventHandler<HTMLInputElement>} */
@@ -21,10 +26,10 @@ export default function Login(props) {
     const username = event.target.value
     try {
       const res = await isUsernameAvailable(username)
-      setMode(res)
+      setShouldRegister(res)
       setErrorMsg('')
     } catch (error) {
-      setMode(false)
+      setShouldRegister(false)
       // @ts-ignore
       setErrorMsg(error.message)
       console.error(error)
@@ -38,12 +43,16 @@ export default function Login(props) {
     const formData = new FormData(event.currentTarget)
     const username = /** @type {string | null} */ (formData.get('username'))
 
-    if (!username || !program) return
+    if (!username) {
+      return
+    }
     setIsLoggingIn(true)
 
     try {
-      await login(username)
-      setErrorMsg('')
+      const session = await login(username)
+      if (!session) {
+        setErrorMsg('Registration failed')
+      }
     } catch (error) {
       console.error(error)
       // @ts-ignore
@@ -53,26 +62,26 @@ export default function Login(props) {
     }
   }
 
-  useEffect(() => {
-    async function run() {
-      if (program) {
-        try {
-          await login()
-          setErrorMsg('')
-        } catch (error) {
-          console.error(error)
-          // @ts-ignore
-          setErrorMsg(error.message)
-        } finally {
-          setIsLoggingIn(false)
-        }
-      }
-    }
+  // useEffect(() => {
+  //   async function run() {
+  //     if (program) {
+  //       try {
+  //         await login()
+  //         setErrorMsg('')
+  //       } catch (error) {
+  //         console.error(error)
+  //         // @ts-ignore
+  //         setErrorMsg(error.message)
+  //       } finally {
+  //         setIsLoggingIn(false)
+  //       }
+  //     }
+  //   }
 
-    run().catch((error) => {
-      console.log(error)
-    })
-  }, [login, program])
+  //   run().catch((error) => {
+  //     console.log(error)
+  //   })
+  // }, [login, program])
 
   if (isLoading) {
     return <div>Loading...</div>
@@ -81,6 +90,7 @@ export default function Login(props) {
   return (
     <>
       <div className="login">
+        <Logo style="margin: 0 auto; height: 50px;" />
         <form autoComplete="on" onSubmit={onSubmit}>
           <label>
             <input
@@ -93,10 +103,9 @@ export default function Login(props) {
             />
           </label>
 
-          <button type="submit" disabled={mode || isLoggingIn}>
-            {isLoggingIn ? 'Logging In...' : 'Login'}
+          <button type="submit" disabled={isLoggingIn}>
+            {shouldRegister ? 'Register' : 'Login'}
           </button>
-          {mode && <a href="/register">Register</a>}
 
           {errorMsg && <p className="error">{errorMsg}</p>}
           <p>
@@ -114,7 +123,7 @@ export default function Login(props) {
           max-width: 21rem;
           margin: 0 auto;
           padding: 1rem;
-          border: 1px solid #f0f0f0;
+          border: 1px solid var(--border);
           border-radius: 4px;
         }
         form,
