@@ -5,15 +5,16 @@ import {
 } from 'workbox-precaching'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
 
-const self = /** @type {ServiceWorkerGlobalScope} */ (
+const global = /** @type {ServiceWorkerGlobalScope} */ (
   /** @type {unknown} */ (globalThis)
 )
 
-self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') self.skipWaiting()
+global.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') global.skipWaiting()
 })
 
 // self.__WB_MANIFEST is default injection point
+// @ts-ignore
 precacheAndRoute(self.__WB_MANIFEST)
 
 // clean old assets
@@ -36,7 +37,7 @@ function nextMessage(dataVal) {
   })
 }
 
-self.addEventListener('message', (event) => {
+global.addEventListener('message', (event) => {
   const resolvers = nextMessageResolveMap.get(event.data)
   if (resolvers === undefined) {
     return
@@ -59,7 +60,7 @@ async function handler({ event }) {
     (async function () {
       // The page sends this message to tell the service worker it's ready to receive the file.
       await nextMessage('share-ready')
-      const client = await self.clients.get(event.resultingClientId)
+      const client = await global.clients.get(event.resultingClientId)
       const data = await dataPromise
       const file = data.get('file')
       if (client !== undefined) {
