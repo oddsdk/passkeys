@@ -198,8 +198,8 @@ export default function Home(props) {
                         ) {
                           await navigator.share({
                             files,
-                            title: 'OddFS',
-                            text: 'OddFS',
+                            title: file.path,
+                            text: file.cid,
                           })
                         }
                       }}

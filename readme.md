@@ -15,7 +15,7 @@ Headless, type-safe & powerful utilities to build apps with [ODD SDK](https://od
 ## Examples
 
 - [`examples/demo`](examples/demo/) - Full PWA demo app with ODD SDK, passkeys authentication, OS share target, OS sharing UI and more. [Live demo](https://passkeys.fission.app/).
-- [`examples/odd-passkeys-preact`](examples/odd-passkeys-preact/) - ODD SDK using passkeys authentication.
+- [`examples/odd-passkeys-preact`](examples/odd-passkeys-preact/) - ODD SDK using passkeys authentication with [Preact](https://preactjs.com/).
 
 ### Checkout examples
 
