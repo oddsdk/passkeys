@@ -99,8 +99,13 @@ async function registerPasskey(username, storage, config) {
     },
   })
 
-  if (credential.clientExtensionResults.prf?.enabled === false) {
-    throw new Error('PRF not supported.')
+  if (
+    !credential.clientExtensionResults.prf ||
+    credential.clientExtensionResults.prf?.enabled === false
+  ) {
+    throw new Error(
+      'This browser does not support the Webauthn extensions (PRF) needed for this demo.'
+    )
   }
 
   await set('passkeys', [credential])
