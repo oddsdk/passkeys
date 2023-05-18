@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/oddsdk/passkeys/compare/preact-v0.2.1...preact-v0.2.2) (2023-05-18)
+
+
+### Bug Fixes
+
+* update preact-router ([4e71f90](https://github.com/oddsdk/passkeys/commit/4e71f903f96afe75d5ad8909b8b25e547034bfe5))
+
 ## [0.2.1](https://github.com/oddsdk/passkeys/compare/preact-v0.2.0...preact-v0.2.1) (2023-05-18)
 
 
