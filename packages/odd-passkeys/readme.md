@@ -16,4 +16,4 @@ import { createComponents } from '@oddjs/passkeys'
 
 ## Docs
 
-Check <https://oddsdk.github.io/passkeys/modules/odd_passkeys.html>
+Check <https://oddsdk.github.io/passkeys/modules/_oddjs_passkeys.html>

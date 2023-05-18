@@ -55,4 +55,4 @@ export default function Home(props) {
 
 ## Docs
 
-Check <https://oddsdk.github.io/passkeys/modules/odd_preact.html>
+Check <https://oddsdk.github.io/passkeys/modules/_oddjs_preact.html>
