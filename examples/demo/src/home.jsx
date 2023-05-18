@@ -4,6 +4,9 @@ import * as odd from '@oddjs/odd'
 import { isFile } from '@oddjs/odd/fs/types/check'
 import { useEffect, useState } from 'preact/hooks'
 import { useOdd } from '@oddjs/preact/router'
+import { ReactComponent as DeleteIcon } from './assets/delete.svg'
+import { ReactComponent as OpenIcon } from './assets/open.svg'
+import { ReactComponent as ShareIcon } from './assets/share.svg'
 
 const branch = odd.path.RootBranch.Public
 
@@ -11,7 +14,7 @@ const branch = odd.path.RootBranch.Public
  * @param {import('preact').Attributes} props
  */
 export default function Home(props) {
-  const { session, isLoading } = useOdd({
+  const { session, isLoading, logout } = useOdd({
     redirectTo: '/login',
   })
   const [status, setStatus] = useState('')
@@ -57,6 +60,7 @@ export default function Home(props) {
       navigator.serviceWorker.controller.postMessage('share-ready')
     }
   }, [session])
+
   /**
    *
    * @param {import('@oddjs/odd').Session | null} session
@@ -151,16 +155,8 @@ export default function Home(props) {
               return (
                 <div key={file.path} class="Box">
                   <p class="Box-text">{file.path}</p>
-                  <a
-                    class="Box-text"
-                    target="_blank"
-                    href={`https://${file.cid}.ipfs.dweb.link`}
-                    rel="noreferrer"
-                    title={file.cid}
-                  >
-                    cid
-                  </a>
                   <img src={file.src} width="100" />
+                  <br />
                   <button
                     type="button"
                     onClick={async () => {
@@ -174,34 +170,43 @@ export default function Home(props) {
                       }
                     }}
                   >
-                    Delete
+                    <DeleteIcon style="fill: currentColor; width: 16px" />
                   </button>
-                  <button
-                    type="button"
-                    onClick={async () => {
-                      const files = [
-                        new File([file.blob], file.path, {
-                          type: file.blob.type,
-                        }),
-                      ]
-                      if (
-                        session &&
-                        session.fs &&
-                        navigator.canShare &&
-                        navigator.canShare({
-                          files,
-                        })
-                      ) {
-                        await navigator.share({
-                          files,
-                          title: 'OddFS',
-                          text: 'OddFS',
-                        })
-                      }
-                    }}
+                  <a
+                    class="button"
+                    target="_blank"
+                    href={`https://${file.cid}.ipfs.dweb.link/userland`}
+                    rel="noreferrer"
+                    title={file.cid}
                   >
-                    Share
-                  </button>
+                    <OpenIcon style="fill: currentColor; width: 16px" />
+                  </a>
+                  {navigator.canShare && (
+                    <button
+                      type="button"
+                      onClick={async () => {
+                        const files = [
+                          new File([file.blob], file.path, {
+                            type: file.blob.type,
+                          }),
+                        ]
+                        if (
+                          navigator.canShare &&
+                          navigator.canShare({
+                            files,
+                          })
+                        ) {
+                          await navigator.share({
+                            files,
+                            title: 'OddFS',
+                            text: 'OddFS',
+                          })
+                        }
+                      }}
+                    >
+                      <ShareIcon style="fill: currentColor; width: 16px" />
+                    </button>
+                  )}
                 </div>
               )
             })
@@ -212,9 +217,7 @@ export default function Home(props) {
       <button
         type="button"
         onClick={async () => {
-          if (session) {
-            await session.destroy()
-          }
+          await logout()
         }}
       >
         Logout

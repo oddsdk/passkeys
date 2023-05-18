@@ -1,12 +1,11 @@
 /* eslint-disable unicorn/no-useless-undefined */
+import * as OddPasskey from '@oddjs/passkeys'
+import { OddContextProvider } from '@oddjs/preact'
 import { Router } from 'preact-router'
 import Home from './home.jsx'
 import Login from './login.jsx'
-import { OddContextProvider } from '@oddjs/preact'
-import Register from './register.jsx'
-import Test from './test.jsx'
-import * as OddPasskey from '@oddjs/passkeys'
 import ReloadPrompt from './prompt.jsx'
+import Test from './test.jsx'
 
 /** @type {import('@oddjs/odd').Configuration} */
 const config = {
@@ -30,9 +29,8 @@ export function App() {
         <main className="App">
           <Router>
             <Home path="/" />
-            <Test path="/test" />
             <Login path="/login" />
-            <Register path="/register" />
+            <Test path="/test" />
           </Router>
         </main>
         <ReloadPrompt />
