@@ -5,7 +5,9 @@ import {
 } from 'workbox-precaching'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
 
-declare let self: globalThis.ServiceWorkerGlobalScope
+const self = /** @type {ServiceWorkerGlobalScope} */ (
+  /** @type {unknown} */ (globalThis)
+)
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') self.skipWaiting()
@@ -17,10 +19,15 @@ precacheAndRoute(self.__WB_MANIFEST)
 // clean old assets
 cleanupOutdatedCaches()
 
-const nextMessageResolveMap = new Map<string, Array<() => void>>()
+/** @type {Map<string, Array<(value: any) => void>>} */
+const nextMessageResolveMap = new Map()
 
-// eslint-disable-next-line @typescript-eslint/promise-function-async
-function nextMessage(dataVal: string): Promise<void> {
+/**
+ *
+ * @param {string} dataVal
+ * @returns Promise<void>
+ */
+function nextMessage(dataVal) {
   return new Promise((resolve) => {
     if (!nextMessageResolveMap.has(dataVal)) {
       nextMessageResolveMap.set(dataVal, [])
@@ -35,14 +42,17 @@ self.addEventListener('message', (event) => {
     return
   }
   nextMessageResolveMap.delete(event.data)
-  for (const resolve of resolvers) resolve()
+  for (const resolve of resolvers) {
+    resolve(event.data)
+  }
 })
 
-async function shareTargetHandler({
-  event,
-}: {
-  event: FetchEvent
-}): Promise<Response> {
+/**
+ *
+ * @param {{request: Request, url: URL, event: FetchEvent }} param0
+ * @returns Promise<Response>
+ */
+async function handler({ event }) {
   const dataPromise = event.request.formData()
 
   event.waitUntil(
@@ -60,17 +70,22 @@ async function shareTargetHandler({
   return Response.redirect('/?share-target')
 }
 
-const matchCb = ({ url, request, event }: any): boolean => {
+/**
+ *
+ * @param {{request: Request, url: URL }} param0
+ */
+function match({ url, request }) {
   if (
     url.pathname === '/' &&
     Boolean(url.searchParams.has('share-target')) &&
-    event.request.method === 'POST'
+    request.method === 'POST'
   ) {
     return true
   }
   return false
 }
-registerRoute(matchCb, shareTargetHandler, 'POST')
+// @ts-ignore
+registerRoute(match, handler, 'POST')
 
 // to allow work offline
 registerRoute(new NavigationRoute(createHandlerBoundToURL('index.html')))
