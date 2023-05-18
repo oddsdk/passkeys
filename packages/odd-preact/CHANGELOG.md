@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.0](https://github.com/oddsdk/passkeys/compare/preact-v0.1.1...preact-v0.2.0) (2023-05-18)
+
+
+### Features
+
+* add login, logout, register to the hooks ([c3a455b](https://github.com/oddsdk/passkeys/commit/c3a455bd0bed16821a622c243db6317c17cceb10))
+
+
+### Bug Fixes
+
+* **odd-preact:** remove dependency on odd-passkeys ([cbccff9](https://github.com/oddsdk/passkeys/commit/cbccff93e4b0366412ee0a2f58319966106cef49))
+
 ## [0.1.1](https://github.com/oddsdk/passkeys/compare/preact-v0.1.0...preact-v0.1.1) (2023-05-16)
 
 
