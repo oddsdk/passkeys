@@ -150,7 +150,9 @@ async function getPasskey(config, storage, mediation) {
     !assertion.clientExtensionResults.prf ||
     !assertion.clientExtensionResults.prf.results
   ) {
-    throw new Error('PRF not supported.')
+    throw new Error(
+      'This browser does not support the Webauthn extensions (PRF) needed for this demo.'
+    )
   }
 
   // @ts-ignore
