@@ -110,12 +110,6 @@ importers:
       '@oddjs/preact':
         specifier: ^0.3.0
         version: link:../../packages/odd-preact
-      iso-passkeys:
-        specifier: ^0.1.5
-        version: 0.1.5
-      p-debounce:
-        specifier: ^4.0.0
-        version: 4.0.0
       preact:
         specifier: ^10.14.1
         version: 10.14.1
@@ -5932,11 +5926,6 @@ packages:
       strip-ansi: 7.0.1
       wcwidth: 1.0.1
     dev: true
-
-  /p-debounce@4.0.0:
-    resolution: {integrity: sha512-4Ispi9I9qYGO4lueiLDhe4q4iK5ERK8reLsuzH6BPaXn53EGaua8H66PXIFGrW897hwjXp+pVLrm/DLxN0RF0A==}
-    engines: {node: '>=12'}
-    dev: false
 
   /p-event@4.2.0:
     resolution: {integrity: sha512-KXatOjCRXXkSePPb1Nbi0p0m+gQAwdlbhi4wQKJPI1HsMQS9g+Sqp2o+QHziPr7eYJyOZet836KoHEVM1mwOrQ==}
