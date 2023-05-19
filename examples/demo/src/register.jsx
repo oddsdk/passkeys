@@ -1,16 +1,16 @@
 /* eslint-disable no-console */
 /* eslint-disable unicorn/no-useless-undefined */
-import { useEffect, useState } from 'preact/hooks'
+import { useState } from 'preact/hooks'
 import { useOdd } from '@oddjs/preact/router'
 import { ReactComponent as Logo } from './assets/brand.svg'
 
 /**
- * Login page
+ * Register page
  *
  * @param {import('preact').Attributes} props
  */
-export default function Login(props) {
-  const { isLoading, login, program } = useOdd({
+export default function Register(props) {
+  const { isLoading, register, program } = useOdd({
     redirectTo: '/',
     redirectIfFound: true,
   })
@@ -32,17 +32,17 @@ export default function Login(props) {
       setErrorMsg('Username is not valid')
       return
     }
-    if (await program?.auth.isUsernameAvailable(username)) {
-      setErrorMsg('No account for this username, you must register first')
+
+    if (!(await program?.auth.isUsernameAvailable(username))) {
+      setErrorMsg('Username is not available')
       return
     }
 
     setIsLoggingIn(true)
-
     try {
-      const session = await login(username)
+      const session = await register(username)
       if (!session) {
-        setErrorMsg('Login failed')
+        setErrorMsg('Registration failed')
       }
     } catch (error) {
       console.error(error)
@@ -52,26 +52,6 @@ export default function Login(props) {
       setIsLoggingIn(false)
     }
   }
-
-  // Trigger conditional UI
-  useEffect(() => {
-    async function run() {
-      if (program) {
-        try {
-          await login()
-          setErrorMsg('')
-        } catch (error) {
-          console.error(error)
-          // @ts-ignore
-          setErrorMsg(error.message)
-        } finally {
-          setIsLoggingIn(false)
-        }
-      }
-    }
-
-    run()
-  }, [login, program])
 
   if (isLoading) {
     return <Logo class="pulse" style="margin: 0 auto; height: 50px;" />
@@ -89,17 +69,18 @@ export default function Login(props) {
               placeholder="username"
               autoFocus
               autoComplete="username webauthn"
+              required
             />
           </label>
           {errorMsg && <p className="error">{errorMsg}</p>}
 
           <button type="submit" disabled={isLoggingIn}>
-            Login
+            Register
           </button>
 
           <p style="text-align: center">
             {' '}
-            Don't have an account? <a href="/register">Register</a>
+            Already have an account? <a href="/login">Login</a>
           </p>
           <br />
           <p>
@@ -107,7 +88,7 @@ export default function Login(props) {
             <code>
               chrome://flags/#enable-experimental-web-platform-features
             </code>{' '}
-            and enable it.
+            and enable it
           </p>
         </form>
       </div>

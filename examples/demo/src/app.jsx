@@ -4,6 +4,7 @@ import { OddContextProvider } from '@oddjs/preact'
 import { Router } from 'preact-router'
 import Home from './home.jsx'
 import Login from './login.jsx'
+import Register from './register.jsx'
 import ReloadPrompt from './prompt.jsx'
 import Test from './test.jsx'
 
@@ -30,6 +31,7 @@ export function App() {
           <Router>
             <Home path="/" />
             <Login path="/login" />
+            <Register path="/register" />
             <Test path="/test" />
           </Router>
         </main>

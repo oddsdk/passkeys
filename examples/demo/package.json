@@ -20,7 +20,6 @@
     "idb-keyval": "^6.2.1",
     "iso-base": "^0.1.5",
     "iso-passkeys": "^0.1.5",
-    "p-debounce": "^4.0.0",
     "preact": "^10.14.1",
     "preact-router": "^4.1.1",
     "react-hook-form": "^7.43.9",

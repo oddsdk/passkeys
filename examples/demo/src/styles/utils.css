@@ -69,6 +69,8 @@ a.button {
   padding-left: 30px;
   display: inline-block;
   vertical-align: bottom;
+  text-align: center;
+  text-decoration: none;
 }
 a.button:hover {
   background-color: var(--button-hover);
@@ -82,4 +84,22 @@ a.button:active {
 a.button:disabled {
   cursor: not-allowed;
   opacity: 0.5;
+}
+
+.pulse {
+  transform: scale(1);
+  animation: pulse-black 2s infinite;
+}
+@keyframes pulse-black {
+  0% {
+    transform: scale(0.85);
+  }
+
+  70% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0.85);
+  }
 }
