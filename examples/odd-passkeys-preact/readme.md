@@ -6,7 +6,7 @@ It uses `vite`, `preact`, `preact-router`, `@oddjs/odd`, `@oddjs/preact` and `@o
 
 ## Try it
 
-You can use Codesandbox <https://githubbox.com/oddsdk/passkeys/tree/main/examples/odd-passkeys-preact> and start hacking right away.
+You can use [Codesandbox](https://githubbox.com/oddsdk/passkeys/tree/main/examples/odd-passkeys-preact) and start hacking right away.
 
 To clone it locally:
 
@@ -59,7 +59,7 @@ Your app will be available online at the domain assigned by the register command
 
 See the [Fission Guide](https://guide.fission.codes/developers/installation) and the publish action README for more details.
 
-## Documention
+## Documentation
 
 - [ODD SDK](https://docs.odd.dev/)
 - [UCANs](https://ucans.xyz/)
