@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/oddsdk/passkeys/compare/passkeys-v0.2.0...passkeys-v0.2.1) (2023-05-19)
+
+
+### Bug Fixes
+
+* better errors for prf ([8b390ec](https://github.com/oddsdk/passkeys/commit/8b390ec842cd90fef1c44d99621245e8763bac3a))
+
 ## [0.2.0](https://github.com/oddsdk/passkeys/compare/passkeys-v0.1.0...passkeys-v0.2.0) (2023-05-18)
 
 

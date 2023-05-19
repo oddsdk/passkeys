@@ -1,6 +1,6 @@
 {
   "name": "@oddjs/passkeys",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "ODD SDK Passkeys components.",
   "author": "Hugo Dias <hugomrdias@gmail.com> (hugodias.me)",
   "license": "apache-2.0",
