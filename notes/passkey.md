@@ -53,14 +53,14 @@ For encryption we have the following options:
 | Feature                     | Android                  | iOS    | MacOS                                                  | Windows         |
 | --------------------------- | ------------------------ | ------ | ------------------------------------------------------ | --------------- |
 | Passkey                     | 9+ ✅                    | 16+ ✅ | 13+ ✅                                                 | 10+ ✅          |
-| Cross-Device Authentication | ✅                       | ✅     | ❌                                                     | ❌ <sup>2</sup> |
+| Cross-Device Authentication | ✅                       | ✅     | Chromium ✅ <br /> Safari ❌                           | ❌ <sup>2</sup> |
 | Cloud Sync                  | ✅                       | ✅     | Safari ✅ <br /> Chromium <sup>1</sup> 🚧              | ❌              |
-| PRF Extension               | Chromium <sup>3</sup> ✅ | ❌     | Chromium <sup>3,4</sup> 🚧                             | ❔              |
+| PRF Extension               | Chromium <sup>3</sup> ✅ | ❌     | Chromium <sup>3,4</sup> 🚧 <br /> Safari ❌            | ❔              |
 | largeBlob Extension         | ❌                       | ❔     | Chromium <sup>5</sup> ❌ <br /> Safari <sup>6</sup> ❌ | ❔              |
 
 <sup>1</sup> Planned using iCloud.
 
-<sup>2</sup> Not support on the OS level on directly on Chromium.
+<sup>2</sup> No support on the OS level but works directly on Chromium.
 
 <sup>3</sup> Behind chrome://flags/#enable-experimental-web-platform-features, doesn't work with CDA.
 

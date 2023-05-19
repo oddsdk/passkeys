@@ -88,7 +88,15 @@ export default function Register(props) {
             <code>
               chrome://flags/#enable-experimental-web-platform-features
             </code>{' '}
-            and enable it
+            and enable it. Check our support{' '}
+            <a
+              href="https://github.com/oddsdk/passkeys/issues/13"
+              target="_blank"
+              rel="noreferrer"
+            >
+              issue
+            </a>{' '}
+            for more info.
           </p>
         </form>
       </div>
