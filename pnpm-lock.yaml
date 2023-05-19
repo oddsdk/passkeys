@@ -105,10 +105,10 @@ importers:
         specifier: ^0.37.1
         version: 0.37.1
       '@oddjs/passkeys':
-        specifier: ^0.2.0
+        specifier: ^0.2.1
         version: link:../../packages/odd-passkeys
       '@oddjs/preact':
-        specifier: ^0.2.1
+        specifier: ^0.3.0
         version: link:../../packages/odd-preact
       iso-passkeys:
         specifier: ^0.1.5
