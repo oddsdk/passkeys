@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/oddsdk/passkeys/compare/preact-v0.2.2...preact-v0.3.0) (2023-05-19)
+
+
+### Features
+
+* remove isUsernameAvailable ([c87044f](https://github.com/oddsdk/passkeys/commit/c87044f096ae9f09a72e9188cf3ec57f76992c8f))
+
 ## [0.2.2](https://github.com/oddsdk/passkeys/compare/preact-v0.2.1...preact-v0.2.2) (2023-05-18)
 
 
