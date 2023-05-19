@@ -19,9 +19,9 @@ Headless, type-safe & powerful utilities to build apps with [ODD SDK](https://od
 
 ### Checkout examples
 
-Using Codesandbox: <https://githubbox.com/oddsdk/passkeys/tree/main/examples/odd-passkeys-preact>
+Using can you Codesandbox: <https://githubbox.com/oddsdk/passkeys/tree/main/examples/odd-passkeys-preact> and start hacking right away.
 
-Locally:
+To clone it locally:
 
 ```bash
 npx tiged oddsdk/passkeys/examples/odd-passkeys-preact odd-passkeys-preact
@@ -29,6 +29,8 @@ cd odd-passkeys-preact
 pnpm install
 pnpm dev
 ```
+
+You can try any of the examples by replacing `odd-passkeys-preact` with the name of the example you want to try.
 
 ## Contributing
 
