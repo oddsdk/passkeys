@@ -15,7 +15,6 @@ export type OddContext =
       error: undefined
       session: null
       program: undefined
-      isUsernameAvailable: (username: string) => Promise<boolean>
       login: LoginFn
       register: LoginFn
       logout: LogoutFn
@@ -25,7 +24,6 @@ export type OddContext =
       error: ProgramError
       session: null
       program: undefined
-      isUsernameAvailable: (username: string) => Promise<boolean>
       login: LoginFn
       register: LoginFn
       logout: LogoutFn
@@ -35,7 +33,6 @@ export type OddContext =
       error: undefined
       session: Session | null
       program: Program
-      isUsernameAvailable: (username: string) => Promise<boolean>
       login: LoginFn
       register: LoginFn
       logout: LogoutFn
@@ -45,7 +42,6 @@ export type OddContext =
       error: undefined
       session: Session | null
       program: Program
-      isUsernameAvailable: (username: string) => Promise<boolean>
       login: LoginFn
       register: LoginFn
       logout: LogoutFn

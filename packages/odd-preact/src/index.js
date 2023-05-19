@@ -17,7 +17,6 @@ const OddContext = createContext({
   error: undefined,
   session: null,
   program: undefined,
-  isUsernameAvailable: undefined,
   login: undefined,
   logout: undefined,
   register: undefined,
@@ -77,20 +76,6 @@ export function OddContextProvider({
     }
   }, [components, componentsFactory, config])
 
-  const isUsernameAvailable = useCallback(
-    async (/** @type {string} */ username) => {
-      if (!program) {
-        throw new Error('Needs program.')
-      }
-      if (!(await program.auth.isUsernameValid(username))) {
-        throw new Error('Invalid username')
-      }
-
-      return program.auth.isUsernameAvailable(username)
-    },
-    [program]
-  )
-
   const login = useCallback(
     async (/** @type {string | undefined} */ username) => {
       if (!program) {
@@ -128,7 +113,6 @@ export function OddContextProvider({
         error: undefined,
         session: null,
         program: undefined,
-        isUsernameAvailable,
         register: login,
         login,
         logout,
@@ -141,7 +125,6 @@ export function OddContextProvider({
         error,
         session: null,
         program: undefined,
-        isUsernameAvailable,
         register: login,
         login,
         logout,
@@ -153,7 +136,6 @@ export function OddContextProvider({
         error,
         session,
         program,
-        isUsernameAvailable,
         register: login,
         login,
         logout,
@@ -165,12 +147,11 @@ export function OddContextProvider({
       error: undefined,
       session,
       program,
-      isUsernameAvailable,
       register: login,
       login,
       logout,
     }
-  }, [program, error, session, isUsernameAvailable, login, logout])
+  }, [program, error, session, login, logout])
 
   return createElement(OddContext.Provider, { value, children })
 }
