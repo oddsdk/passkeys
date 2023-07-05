@@ -52,38 +52,30 @@
   }
 }
 
-a.button {
-  transition: background-color 0.1s linear, border-color 0.1s linear,
-    color 0.1s linear, box-shadow 0.1s linear, transform 0.1s ease;
-  color: var(--form-text);
-  background-color: var(--button-base);
-  font-family: inherit;
-  font-size: inherit;
-  margin-right: 6px;
-  margin-bottom: 6px;
-  padding: 10px;
-  border: none;
-  border-radius: 6px;
-  outline: none;
-  padding-right: 30px;
-  padding-left: 30px;
-  display: inline-block;
-  vertical-align: bottom;
-  text-align: center;
-  text-decoration: none;
+button {
+  height: 3rem;
+  border-radius: 2px;
+  margin-right: 0;
 }
-a.button:hover {
-  background-color: var(--button-hover);
+
+input {
+  height: 2rem;
+  border-radius: 2px;
+  margin-right: 0;
 }
-a.button:focus {
-  box-shadow: 0 0 0 2px var(--focus);
+
+.warning {
+  border-radius: 2px;
+  background: #DFC334;
+  padding: 1rem;
 }
-a.button:active {
-  transform: translateY(2px);
+
+.warning > :first-child {
+  margin-top: 0.5rem;
 }
-a.button:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
+
+.error {
+  color: #A6163A;
 }
 
 .pulse {

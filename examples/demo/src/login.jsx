@@ -80,7 +80,19 @@ export default function Login(props) {
   return (
     <>
       <div className="login">
-        <Logo style="margin: 0 auto; height: 50px;" />
+        <div class="ask">
+          <Logo style="margin: 0 auto" />
+          <p>Did you know it will be possible to encrypt data with a passkey? <em>When</em> your browser supports it.</p>
+          <p>Help us achieve full browser compatibility. Track the &nbsp;
+            <a
+              href="https://github.com/oddsdk/passkeys/issues/13"
+              target="_blank"
+              rel="noreferrer"
+            >
+              current status of browser support
+            </a>.</p>
+          <p>Let’s see what this browser is capable of.</p>
+        </div>
         <form autoComplete="on" onSubmit={onSubmit}>
           <label>
             <input
@@ -91,52 +103,41 @@ export default function Login(props) {
               autoComplete="username webauthn"
             />
           </label>
-          {errorMsg && <p className="error">{errorMsg}</p>}
 
           <button type="submit" disabled={isLoggingIn}>
             Login
           </button>
 
+          {errorMsg && <p className="error">{errorMsg}</p>}
+
           <p style="text-align: center">
-            {' '}
             Don't have an account? <a href="/register">Register</a>
           </p>
-          <br />
-          <p>
-            Navigate to{' '}
-            <code>
-              chrome://flags/#enable-experimental-web-platform-features
-            </code>{' '}
-            and enable it. Check our support{' '}
-            <a
-              href="https://github.com/oddsdk/passkeys/issues/13"
-              target="_blank"
-              rel="noreferrer"
-            >
-              issue
-            </a>{' '}
-            for more info.
-          </p>
         </form>
+        <div class="warning">
+          <h3>Using a Chromium browser?</h3>
+          <p>Navigate to{' '}
+          <code>
+            chrome://flags/#enable-experimental-web-platform-features
+          </code>{' '}
+          and enable it.</p>
+        </div>
+
       </div>
 
       <style jsx>{`
         .login {
-          max-width: 21rem;
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+          max-width: 24rem;
           margin: 0 auto;
-          padding: 1rem;
-          border: 1px solid var(--border);
-          border-radius: 4px;
         }
         form,
         label {
           display: flex;
           flex-flow: column;
-        }
-        .error {
-          font-size: 0.8rem;
-          color: brown;
-          margin-bottom: 1rem;
+          gap: 0.5rem;
         }
       `}</style>
     </>

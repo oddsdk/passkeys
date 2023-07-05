@@ -82,42 +82,43 @@ export default function Register(props) {
             {' '}
             Already have an account? <a href="/login">Login</a>
           </p>
-          <br />
-          <p>
-            Navigate to{' '}
-            <code>
-              chrome://flags/#enable-experimental-web-platform-features
-            </code>{' '}
-            and enable it. Check our support{' '}
+        </form>
+        <div class="warning">
+          <h3>Using a Chromium browser?</h3>
+          <p>Navigate to{' '}
+          <code>
+            chrome://flags/#enable-experimental-web-platform-features
+          </code>{' '}
+          and enable it.</p>
+        </div>
+
+        <div class="warning">
+          <h3>Want to use passkeys for encryption?</h3>
+          <p>Help us achieve full browser compatibility. Track the &nbsp;
             <a
               href="https://github.com/oddsdk/passkeys/issues/13"
               target="_blank"
               rel="noreferrer"
             >
-              issue
-            </a>{' '}
-            for more info.
+              current status of browser support
+            </a>.
           </p>
-        </form>
+        </div>
       </div>
 
       <style jsx>{`
         .login {
-          max-width: 21rem;
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+          max-width: 24rem;
           margin: 0 auto;
-          padding: 1rem;
-          border: 1px solid var(--border);
-          border-radius: 4px;
         }
         form,
         label {
           display: flex;
           flex-flow: column;
-        }
-        .error {
-          font-size: 0.8rem;
-          color: brown;
-          margin-bottom: 1rem;
+          gap: 0.5rem;
         }
       `}</style>
     </>
