@@ -1,28 +1,28 @@
-@import '@acab/reset.css';
 @import 'water.css';
 @import 'utils.css';
+@import 'typography.css';
 
 /*  #313245 #F16583 */
 :root {
-  --background-body: hsl(237, 17%, 23%);
-  --background: hsl(237, 17%, 15%);
+  --background-body: hsl(235, 18%, 90%);
+  --background: hsl(235, 17%, 23%);
   --background-alt: hsl(237, 17%, 15%);
 
   --selection: #1c76c5;
-  --text-main: hsl(233, 18%, 90%);
-  --text-bright: hsl(233, 18%, 100%);
-  --text-muted: hsl(233, 18%, 60%);
-  --links: hsl(347, 83%, 67%);
+  --text-main: hsl(235, 17%, 23%);
+  --text-bright: hsl(235, 17%, 23%);
+  --text-muted: hsl(234, 17%, 54%);
+  --links: hsla(250, 93%, 63%, 1);
   --focus: hsl(347, 83%, 77%);
   --border: hsl(233, 18%, 60%);
   --code: #ffbe85;
   --animation-duration: 0.1s;
-  --button-base: hsl(237, 17%, 10%);
-  --button-hover: hsl(237, 17%, 7%);
+  --button-base: hsla(250, 93%, 63%, 1);
+  --button-hover: hsla(250, 93%, 63%, .9);
   --scrollbar-thumb: var(--button-hover);
   --scrollbar-thumb-hover: rgb(0, 0, 0);
   --form-placeholder: #a9a9a9;
-  --form-text: #fff;
+  --form-text: hsl(235, 18%, 90%);
   --variable: #d941e2;
   --highlight: #efdb43;
 }
@@ -41,14 +41,15 @@
 }
 
 .App {
+  padding: 1rem;
+  height: 100%;
   display: flex;
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 0 10px;
   word-wrap: break-word;
-  padding-top: 54px;
   flex-direction: column;
-  margin-bottom: 80px;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 8rem;
+  box-sizing: border-box;
 }
 
 .ReloadPrompt-container {
@@ -165,3 +166,36 @@
 .BottomBar-icon.active {
   color: var(--links);
 }
+
+.powered-by-odd {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.powered-by-bg {
+  position: absolute;
+  bottom: 0;
+}
+
+.powered-by-fg {
+  position: absolute;
+  bottom: 0;
+}
+
+.powered-by-wave {
+  position: relative;
+}
+
+.powered-by-msg {
+  font-family: 'ApfelGrotezk';
+  background: #484A65;
+  display: flex;
+  padding: 1rem;
+  color: #AAADC4;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+}
+
